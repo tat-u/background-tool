@@ -2,13 +2,15 @@ import styles from "@/ui/components/MySlider/MySlider.module.css";
 import Slider from "@mui/material/Slider";
 import { Dispatch, SetStateAction } from "react";
 
-export function MySlider({
-  setter,
-}: {
-  setter: Dispatch<SetStateAction<number>>;
-}) {
+export interface Props {
+  /** useState(number) によって生成されたセッター関数 */
+  setter?: Dispatch<SetStateAction<number>>;
+}
+
+/** スライダー */
+export function MySlider({ setter }: Props) {
   const handleChange = (event: Event, value: number, activeThumb: number) => {
-    setter(value);
+    setter?.(value);
   };
 
   return (
